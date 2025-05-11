@@ -6,8 +6,8 @@
 body {
     min-height: 100vh;
     font-family: "Outfit";
-    background-image: url("../img/pexels-kovyrina-10180294.jpg");
-    /* background-image: url("../img/pexels-towfiqu-barbhuiya-3440682-11873897.jpg"); */
+    background-image: url("../img/pexels-tsvetoslav-hristov-1306654-5228074.jpg");
+    
     /* Ruta de la imagen */
     background-size: cover;
     /* Ajusta la imagen para cubrir todo el área */
@@ -31,7 +31,8 @@ main {
 }
 
 .bg-nav-custom-tertiary {
-  background-color: hsl(53, 17%, 51%);
+  background-color: rgb(146, 144, 114);
+  
 }
 
 
