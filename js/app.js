@@ -1,23 +1,29 @@
 function asignarTiempo(e) {
     e.preventDefault(); //evitar que recargue la pagina
-    // blanquer input
-    tiempoCargado.reset();
 
     //seleccionar el texto que escribio en el formulario
-    horas = document.querySelector('#horasInput').value
-    minutos = document.querySelector('#minutosInput').value
-    segundos = document.querySelector('#segundosInput').value
+    horas = Number(document.querySelector('#horasInput').value)
+    minutos = Number(document.querySelector('#minutosInput').value)
+    segundos = Number(document.querySelector('#segundosInput').value)
 
-    //pasar todo a segundos
-    const horaAseg = horas * 3600
-    const minAseg = minutos * 60
-    intervalo = horaAseg + minAseg + segundos
+    //pasar hora y minutos a segundos, y luego todo a milisegundos
+    intervalo = ((horas * 3600) + (minutos * 60) + segundos) * 1000
+ 
+    // trae el h1 que muestra el Temporizador Inicial
+    const temporizador = document.querySelector('h1')
+
+    let seg = segundos < 10 ? '0' + segundos : segundos;
+    let min = minutos < 10 ? '0' + minutos : minutos;
+    let hor = horas < 10 ? '0' + horas : horas;
+
+    temporizador.textContent = `${hor}:${min}:${seg}`;
+
+    
 }
 
-function iniciarTemporizador() {
-    // trae el h1 que muestra el Temporizador
-    const Temporizador = document.querySelector('h1')
-
+function iniciarTemporizador(){
+    // comenzar cuenta regresiva
+    console.log('en funcion iniciar')
     if (segundos > 0 && segundos < 60) {
         segundos = segundos - 1
     } else {
@@ -33,13 +39,12 @@ function iniciarTemporizador() {
             }
         }
     }
-
-    // mostrar Temporizador como texto
+     // mostrar temporizador como texto
     let seg = segundos < 10 ? '0' + segundos : segundos;
     let min = minutos < 10 ? '0' + minutos : minutos;
     let hor = horas < 10 ? '0' + horas : horas;
 
-    Temporizador.textContent = `${hor}:${min}:${seg}`;
+    temporizador.textContent = `${hor}:${min}:${seg}`;
 }
 
 
@@ -53,34 +58,4 @@ let intervalo = null;
 const tiempoCargado = document.querySelector('#tiempoInicialForm')
 tiempoCargado.addEventListener('submit', asignarTiempo)
 
-const iniciar = document.querySelector('#btnIniciar')
-iniciar.addEventListener('click', () => {
-    if(!intervalo) {
-        intervalo = setInterval(iniciarTemporizador, 1000);
-        document.querySelector('#btnIniciar').disabled = true;
-        document.querySelector('#btnReiniciar').disabled = false;
-        document.querySelector('#btnPausar').disabled = false;
-    }else{
-        document.querySelector('#btnIniciar').disabled = false;
-    }
-})
-
-const pausar = document.querySelector('#btnPausar')
-pausar.addEventListener('click', () => {
-    clearInterval(intervalo);
-    intervalo = null;
-    document.querySelector('#btnIniciar').disabled = false;
-    document.querySelector('#btnPausar').disabled = true;
-});
-
-document.querySelector('#btnReiniciar').addEventListener('click', () => {
-    clearInterval(intervalo);
-    intervalo = null;
-    segundos = 0;
-    minutos = 0;
-    horas = 0;
-    document.querySelector('h1').textContent = '00:00:00';
-    document.querySelector('#btnIniciar').disabled = false;
-    document.querySelector('#btnReiniciar').disabled = true;
-    document.querySelector('#btnPausar').disabled = true;
-})
+console.log('tiempo cargado:' + intervalo)
