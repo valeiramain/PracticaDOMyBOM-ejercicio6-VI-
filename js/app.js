@@ -1,60 +1,62 @@
 function asignarTiempo(e) {
     e.preventDefault(); //evitar que recargue la pagina
+    // blanquer input
+    tiempoCargado.reset();
 
     //seleccionar el texto que escribio en el formulario
-    const horas = document.querySelector('#horasInput').value
-    const minutos = document.querySelector('#minutosInput').value
-    const segundos = document.querySelector('#segundosInput').value
+    horas = document.querySelector('#horasInput').value
+    minutos = document.querySelector('#minutosInput').value
+    segundos = document.querySelector('#segundosInput').value
 
-    // blanquer input
-    // tiempoCargado.reset();
+    //pasar todo a segundos
+    const horaAseg = horas * 3600
+    const minAseg = minutos * 60
+    intervalo = horaAseg + minAseg + segundos
 }
 
-function iniciarCronometro() {
-    // trae el h1 que muestra el cronometro
-    const cronometro = document.querySelector('h1')
+function iniciarTemporizador() {
+    // trae el h1 que muestra el Temporizador
+    const Temporizador = document.querySelector('h1')
 
-    if (segundos < 59) {
-        segundos = segundos + 1
+    if (segundos > 0 && segundos < 60) {
+        segundos = segundos - 1
     } else {
         segundos = 0
-        if (minutos < 59) {
-            minutos = minutos + 1
+        if (minutos > 0 && minutos < 60) {
+            minutos = minutos - 1
         } else {
             minutos = 0
-            if (horas < 23)
-                horas = horas + 1
+            if (horas < 24)
+                horas = horas - 1
             else {
                 horas = 0
             }
         }
     }
 
-    // mostrar cronometro como texto
+    // mostrar Temporizador como texto
     let seg = segundos < 10 ? '0' + segundos : segundos;
     let min = minutos < 10 ? '0' + minutos : minutos;
     let hor = horas < 10 ? '0' + horas : horas;
 
-    cronometro.textContent = `${hor}:${min}:${seg}`;
+    Temporizador.textContent = `${hor}:${min}:${seg}`;
 }
 
 
 //-------------LOGICA----------------
-
-// Carga tiempo cronometro
-const tiempoCargado = document.querySelector('#tiempoInicialForm')
-tiempoCargado.addEventListener('submit', asignarTiempo)
-
-
 let segundos = 0;
 let minutos = 0;
 let horas = 0;
 let intervalo = null;
 
+// Carga tiempo Temporizador
+const tiempoCargado = document.querySelector('#tiempoInicialForm')
+tiempoCargado.addEventListener('submit', asignarTiempo)
+
 const iniciar = document.querySelector('#btnIniciar')
 iniciar.addEventListener('click', () => {
     if(!intervalo) {
-        intervalo = setInterval(iniciarCronometro, 1000);
+        intervalo = setInterval(iniciarTemporizador, 1000);
         document.querySelector('#btnIniciar').disabled = true;
         document.querySelector('#btnReiniciar').disabled = false;
         document.querySelector('#btnPausar').disabled = false;
