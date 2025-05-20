@@ -22,15 +22,39 @@
         </nav>
     </header>
     <main>
+        <section class="container my-3 px-3 bg-form-secondary-subtle-transparent">
+            <form class="row pt-2" id="tiempoInicialForm">
+                <!-- Tarea -->
+                <div class="col-sm-3 mb-2">
+                    <input type="number" class="form-control" id="horasInput" min="0"
+                        placeholder="HH" required>
+                </div>
+                <div class="col-sm-3 mb-2">
+                    <input type="number" class="form-control" id="minutosInput" min="0" max="59"
+                        placeholder="MM" required>
+                </div>
+                <div class="col-sm-3 mb-2">
+                    <input type="number" class="form-control" id="segundosInput" min="0" max="59"
+                        placeholder="SS" required>
+                </div>
+
+                <!-- Botón Iniciar -->
+                <div class="col-sm-3 mb-2 text-center">
+                    <button type="submit" class="btn btn-warning text-dark px-4" id="btnIniciar"><i class="bi bi-play-fill"></i> Iniciar</button>
+                </div>
+            </form>
+        </section>
 
         <section class="container text-center py-5 mb-4">
-            <h1 class="display-1 bg-form-secondary-subtle-transparent fw-bold mb-4 py-5">14:30:45</h1>
+            <h1 class="display-1 bg-form-secondary-subtle-transparent fw-bold mb-4 py-5">00:00:00</h1>
 
-            <div class="d-flex justify-content-center gap-3">
-                <button type="button" class="btn btn-secondary text-dark btn-lg w-25">Iniciar</button>
-                <button type="button" class="btn btn-secondary text-dark btn-lg w-25">Reset</button>
-                <button type="button" class="btn btn-secondary text-dark btn-lg w-25">Pausar</button>
+            <div class="btn-group gap-3">
+                <button type="button" class="btn btn-secondary text-dark btn-lg" id="btnPausar"><i
+                        class="bi bi-pause"></i> Pausar</button>
+                <button type="button" class="btn btn-secondary text-dark btn-lg" id="btnReiniciar"><i
+                        class="bi bi-arrow-clockwise"></i> Reiniciar</button>
             </div>
+
 
         </section>
     </main>
