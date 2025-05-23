@@ -26,15 +26,15 @@
             <form class="row pt-2" id="tiempoInicialForm">
                 <!-- Tarea -->
                 <div class="col-sm-3 mb-2">
-                    <input type="number" class="form-control" id="horasInput" min="0"
+                    <input type="number" class="form-control" id="horas" min="0" max="99"
                         placeholder="HH" required>
                 </div>
                 <div class="col-sm-3 mb-2">
-                    <input type="number" class="form-control" id="minutosInput" min="0" max="59"
+                    <input type="number" class="form-control" id="minutos" min="0" max="59"
                         placeholder="MM" required>
                 </div>
                 <div class="col-sm-3 mb-2">
-                    <input type="number" class="form-control" id="segundosInput" min="0" max="59"
+                    <input type="number" class="form-control" id="segundos" min="0" max="59"
                         placeholder="SS" required>
                 </div>
 
@@ -46,7 +46,7 @@
         </section>
 
         <section class="container text-center py-5 mb-4">
-            <h1 class="display-1 bg-form-secondary-subtle-transparent fw-bold mb-4 py-5">00:00:00</h1>
+            <h1 class="display-1 bg-form-secondary-subtle-transparent fw-bold mb-4 py-5" id="display">00:00:00</h1>
 
             <div class="btn-group gap-3">
                 <button type="button" class="btn btn-secondary text-dark btn-lg" id="btnPausar"><i
